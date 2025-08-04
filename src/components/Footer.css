@@ -1,0 +1,30 @@
+.footer {
+  background: rgba(0, 102, 204, 0.15); 
+  backdrop-filter: blur(10px); 
+  color: #00bfff;
+  text-align: center;
+  padding: 1.5rem 1rem;
+  font-size: 0.95rem;
+  box-shadow: 0 0 20px rgba(0, 191, 255, 0.2);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer p {
+  margin: 0;
+  text-shadow: 0 0 5px #00bfff;
+}
+
+.footer a {
+  color: #00bfff;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-weight: bold;
+  transition: transform 0.3s, color 0.3s, text-shadow 0.3s;
+}
+
+.footer a:hover {
+  transform: scale(1.1);
+  color: #00ffff;
+  text-shadow: 0 0 10px #00ffff;
+}

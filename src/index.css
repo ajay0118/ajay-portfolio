@@ -1,0 +1,93 @@
+/* Global scroll behavior */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px; /* Account for sticky navbar height */
+}
+
+/* Alternative: Use scroll-margin-top on sections */
+#home, #about, #education, #projects, #contact {
+  scroll-margin-top: 100px;
+}
+
+/* Fallback for browsers that don't support scroll-padding-top */
+@supports not (scroll-padding-top: 100px) {
+  #home, #about, #education, #projects, #contact {
+    scroll-margin-top: 100px;
+  }
+}
+
+/* Ensure sections have proper spacing from top */
+section[id] {
+  padding-top: 20px; /* Extra top padding for better spacing */
+}
+
+/* Specific styling for Hero section to prevent content overlap */
+#home.hero {
+  padding-top: 120px; /* Extra padding for Hero section */
+  margin-top: 0; /* Reset any margin */
+}
+
+body.dark-mode {
+  background-color: #1a1a1a;
+  color: #f0f0f0;
+}
+
+body.dark-mode nav {
+  background-color: #222;
+  color: #fff;
+}
+
+body.dark-mode nav a {
+  color: #f0f0f0;
+}
+
+body.dark-mode nav a:hover {
+  color: #00bfff;
+}
+
+body.dark-mode .hero,
+body.dark-mode .about-section,
+body.dark-mode .projects-section,
+body.dark-mode .contact-section,
+body.dark-mode footer {
+  background-color: #1a1a1a;
+  color: #f0f0f0;
+}
+
+body.dark-mode .project-card,
+body.dark-mode .about-section,
+body.dark-mode .contact-section {
+  background-color: #2a2a2a;
+  border-color: #444;
+}
+
+body.dark-mode .hero-btn,
+body.dark-mode .github-link {
+  background-color: #00bfff;
+  color: #000;
+}
+
+body.dark-mode .hero-btn:hover,
+body.dark-mode .github-link:hover {
+  background-color: #0099cc;
+}
+
+body.dark-mode .footer {
+  background-color: #111;
+}
+
+.mode-toggle {
+  margin-left: 1rem;
+  background-color: transparent;
+  border: 2px solid #0a66c2;
+  color: #0a66c2;
+  padding: 0.3rem 0.7rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+body.dark-mode .mode-toggle {
+  border-color: #00bfff;
+  color: #00bfff;
+}

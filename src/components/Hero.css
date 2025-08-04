@@ -1,0 +1,102 @@
+.hero {
+    padding: 4rem 2rem;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .hero-content {
+    display: flex;
+    align-items: center;
+    min-width: unset;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  
+  .hero-text {
+    flex: 1;
+  }
+  
+  .hero-image {
+    flex: 1;
+    text-align: center;
+  }
+  
+  .hero-image img {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--primary);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .hero-image img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px var(--primary);
+  }
+  
+  .hero-btn {
+    margin-top: 1.5rem;
+    padding: 0.7rem 1.5rem;
+    background-color: var(--primary);
+    color: #000;
+    border: none;
+    font-weight: bold;
+    border-radius: 8px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    display: inline-block;
+  }
+  
+  .hero-btn:hover {
+    background-color: #0099cc;
+    transform: scale(1.05);
+  }
+  
+  .glow-text {
+    color: var(--highlight);
+    text-shadow: 0 0 10px var(--highlight), 0 0 20px var(--highlight);
+    font-weight: 600;
+    font-size: 2.5rem;
+  }
+  
+  .typewriter {
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 2px solid var(--highlight);
+    animation: typing 3s steps(30, end) forwards;
+    width: 0;
+  }
+  
+  @keyframes typing {
+    to {
+      width: 100%;
+    }
+  }
+  
+  @media (max-width: 800px) {
+    .hero-content {
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .hero {
+      padding: 2rem 0.5rem;
+    }
+    .glow-text {
+      font-size: 1.5rem;
+    }
+    .hero-image img {
+      width: 140px;
+      height: 140px;
+    }
+    .hero-btn {
+      padding: 0.6rem 1.1rem;
+      font-size: 1rem;
+    }
+  }
+  
