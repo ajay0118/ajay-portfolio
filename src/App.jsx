@@ -19,7 +19,6 @@ function App() {
       once: true,
     });
 
-    // Function to scroll to element with navbar offset
     const scrollToElement = (elementId) => {
       const targetElement = document.querySelector(elementId);
       const navbar = document.querySelector('nav');
@@ -35,7 +34,6 @@ function App() {
       }
     };
 
-    // Handle smooth scrolling with offset for sticky navbar
     const handleSmoothScroll = (e) => {
       const targetId = e.target.getAttribute('href');
       if (targetId && targetId.startsWith('#')) {
@@ -44,24 +42,19 @@ function App() {
       }
     };
 
-    // Add event listeners to all nav links
     const navLinks = document.querySelectorAll('nav a[href^="#"]');
     navLinks.forEach(link => {
       link.addEventListener('click', handleSmoothScroll);
     });
 
-    // Handle direct URL navigation (page refresh with hash)
     const handleHashNavigation = () => {
       if (window.location.hash) {
-        // Small delay to ensure DOM is ready
         setTimeout(() => {
           scrollToElement(window.location.hash);
         }, 100);
       } else {
-        // If no hash, ensure Hero section is properly positioned
         const heroSection = document.querySelector('#home');
         if (heroSection) {
-          // Scroll to top to ensure Hero is fully visible
           window.scrollTo({
             top: 0,
             behavior: 'smooth'
@@ -70,13 +63,10 @@ function App() {
       }
     };
 
-    // Call on initial load
     handleHashNavigation();
 
-    // Listen for hash changes
     window.addEventListener('hashchange', handleHashNavigation);
 
-    // Cleanup function
     return () => {
       navLinks.forEach(link => {
         link.removeEventListener('click', handleSmoothScroll);

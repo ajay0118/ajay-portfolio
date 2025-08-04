@@ -1,12 +1,38 @@
 import './Contact.css';
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import emailjs from '@emailjs/browser';
 import { FaGithub, FaLinkedin, FaInstagram, FaEnvelope } from 'react-icons/fa';
 
 function Contact() {
   const form = useRef();
+  const contactRef = useRef();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !isVisible) {
+          setIsVisible(true);
+        }
+      },
+      {
+        threshold: 0.3,
+        rootMargin: '0px 0px -50px 0px'
+      }
+    );
+
+    if (contactRef.current) {
+      observer.observe(contactRef.current);
+    }
+
+    return () => {
+      if (contactRef.current) {
+        observer.unobserve(contactRef.current);
+      }
+    };
+  }, [isVisible]);
 
   const sendEmail = (e) => {
     e.preventDefault();
@@ -33,8 +59,13 @@ function Contact() {
   };
 
   return (
-    <section id="contact" className="contact-section" aria-label="Contact Me">
-      <h2>📨 Contact Me</h2>
+    <section 
+      ref={contactRef}
+      id="contact" 
+      className={`contact-section ${isVisible ? 'animate-in' : ''}`} 
+      aria-label="Contact Me"
+    >
+      <h2 className={`contact-heading ${isVisible ? 'animate-in' : ''}`}>📨 Contact Me</h2>
       
       {submitStatus === 'success' && (
         <div className="success-message">
@@ -48,7 +79,7 @@ function Contact() {
         </div>
       )}
 
-      <form ref={form} onSubmit={sendEmail} className="contact-form">
+      <form ref={form} onSubmit={sendEmail} className={`contact-form ${isVisible ? 'animate-in' : ''}`}>
         <div className="form-group">
           <input 
             type="text" 
@@ -91,7 +122,7 @@ function Contact() {
         </button>
       </form>
 
-      <div className="social-icons">
+      <div className={`social-icons ${isVisible ? 'animate-in' : ''}`}>
         <a 
           href="mailto:ajayvenkateshmac0118@gmail.com" 
           aria-label="Send email to Ajay Venkatesh"

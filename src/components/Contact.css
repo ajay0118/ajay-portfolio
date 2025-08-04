@@ -7,13 +7,29 @@
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
   color: #f0f0f0;
   text-align: center;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
-.contact-section h2 {
+.contact-section.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.contact-heading {
   font-size: 2.5rem;
   margin-bottom: 2rem;
   color: #00bfff;
   text-shadow: 0 0 10px #00bfff;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease 0.2s, transform 0.6s ease 0.2s;
+}
+
+.contact-heading.animate-in {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .success-message {
@@ -47,6 +63,14 @@
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.6s ease 0.4s, transform 0.6s ease 0.4s;
+}
+
+.contact-form.animate-in {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .form-group {
@@ -115,6 +139,14 @@
   justify-content: center;
   gap: 2rem;
   margin-top: 2rem;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease 0.6s, transform 0.6s ease 0.6s;
+}
+
+.social-icons.animate-in {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .social-icons a {
@@ -141,7 +173,7 @@
     border-radius: 0;
   }
   
-  .contact-section h2 {
+  .contact-heading {
     font-size: 1.5rem;
     margin-bottom: 1rem;
   }

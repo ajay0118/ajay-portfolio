@@ -8,22 +8,47 @@ function Navbar() {
   const hamburgerRef = useRef(null);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const sections = ['home', 'about', 'education', 'projects', 'contact'];
-      let found = 'home';
-      for (const section of sections) {
-        const el = document.getElementById(section);
-        if (el && window.scrollY >= el.offsetTop - 80) {
-          found = section;
+    const sections = ['home', 'about', 'education', 'projects', 'contact'];
+    const observers = [];
+
+    const createObserver = (sectionId) => {
+      const element = document.getElementById(sectionId);
+      if (!element) return null;
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setActiveSection(sectionId);
+            }
+          });
+        },
+        {
+          threshold: 0.5,
+          rootMargin: '-20% 0px -20% 0px'
         }
-      }
-      setActiveSection(found);
+      );
+
+      observer.observe(element);
+      return observer;
     };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+
+    sections.forEach(sectionId => {
+      const observer = createObserver(sectionId);
+      if (observer) {
+        observers.push(observer);
+      }
+    });
+
+    return () => {
+      observers.forEach(observer => {
+        if (observer) {
+          observer.disconnect();
+        }
+      });
+    };
   }, []);
 
-  // Prevent body scroll when menu is open
   useEffect(() => {
     if (isMenuOpen) {
       document.body.classList.add('menu-open');
@@ -36,7 +61,6 @@ function Navbar() {
     };
   }, [isMenuOpen]);
 
-  // Handle click outside to close menu
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (isMenuOpen && 
@@ -67,7 +91,6 @@ function Navbar() {
       <div className="nav-container">
         <h2>Ajay Portfolio</h2>
         
-        {/* Hamburger Menu Button */}
         <button 
           ref={hamburgerRef}
           className={`hamburger ${isMenuOpen ? 'active' : ''}`}
@@ -80,7 +103,6 @@ function Navbar() {
           <span></span>
         </button>
 
-        {/* Navigation Menu */}
         <ul ref={menuRef} className={`nav-menu ${isMenuOpen ? 'active' : ''}`}>
           <li>
             <a
