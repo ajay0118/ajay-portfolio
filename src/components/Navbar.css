@@ -22,11 +22,45 @@ nav {
   text-shadow: 0 0 8px #00bfff;
 }
 
+/* Hamburger Menu Button */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  z-index: 1000;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background: #00bfff;
+  margin: 3px 0;
+  transition: 0.3s;
+  border-radius: 2px;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(45deg) translate(-5px, -6px);
+}
+
 /* Nav Links */
-nav ul {
+.nav-menu {
   display: flex;
   list-style: none;
   gap: 1.2rem;
+  margin: 0;
+  padding: 0;
 }
 
 nav a {
@@ -36,15 +70,14 @@ nav a {
   font-size: 1rem;
   position: relative;
   transition: all 0.3s ease;
-  padding: 0.75rem 1.2rem; /* Increased padding for touch targets */
-  border-radius: 6px;       /* Optional: rounded corners for better touch */
-  min-width: 44px;          /* Ensures minimum touch target width */
-  min-height: 44px;         /* Ensures minimum touch target height */
+  padding: 0.75rem 1.2rem;
+  border-radius: 6px;
+  min-width: 44px;
+  min-height: 44px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
 }
-  
 
 nav a::after {
   content: '';
@@ -79,16 +112,60 @@ nav a.active::after {
   width: 100%;
 }
 
-/* === Responsive Nav (Mobile) === */
+/* === Mobile Responsive Design === */
 @media (max-width: 768px) {
-  .nav-container {
-    flex-direction: column;
-    align-items: flex-start;
+  .hamburger {
+    display: flex;
   }
 
-  nav ul {
+  .nav-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 250px;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(10px);
     flex-direction: column;
-    gap: 0.75rem;
-    margin-top: 1rem;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    transition: right 0.3s ease;
+    padding: 2rem;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+  }
+
+  .nav-menu.active {
+    right: 0;
+  }
+
+  .nav-menu li {
+    width: 100%;
+    text-align: center;
+  }
+
+  .nav-menu a {
+    width: 100%;
+    justify-content: center;
+    padding: 1rem;
+    font-size: 1.1rem;
+  }
+
+  /* Prevent body scroll when menu is open */
+  body.menu-open {
+    overflow: hidden;
+  }
+}
+
+/* === Desktop Styles (768px and above) === */
+@media (min-width: 769px) {
+  .nav-container {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .nav-menu {
+    flex-direction: row;
+    gap: 1.2rem;
   }
 }

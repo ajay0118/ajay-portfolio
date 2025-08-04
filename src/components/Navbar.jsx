@@ -1,8 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import './Navbar.css';
 
 function Navbar() {
   const [activeSection, setActiveSection] = useState('home');
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const menuRef = useRef(null);
+  const hamburgerRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -20,16 +23,71 @@ function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Prevent body scroll when menu is open
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.classList.add('menu-open');
+    } else {
+      document.body.classList.remove('menu-open');
+    }
+
+    return () => {
+      document.body.classList.remove('menu-open');
+    };
+  }, [isMenuOpen]);
+
+  // Handle click outside to close menu
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (isMenuOpen && 
+          menuRef.current && 
+          !menuRef.current.contains(event.target) &&
+          hamburgerRef.current &&
+          !hamburgerRef.current.contains(event.target)) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isMenuOpen]);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
+
   return (
     <nav aria-label="Main navigation" role="navigation">
       <div className="nav-container">
         <h2>Ajay Portfolio</h2>
-        <ul>
+        
+        {/* Hamburger Menu Button */}
+        <button 
+          ref={hamburgerRef}
+          className={`hamburger ${isMenuOpen ? 'active' : ''}`}
+          onClick={toggleMenu}
+          aria-label="Toggle navigation menu"
+          aria-expanded={isMenuOpen}
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        {/* Navigation Menu */}
+        <ul ref={menuRef} className={`nav-menu ${isMenuOpen ? 'active' : ''}`}>
           <li>
             <a
               href="#home"
               className={activeSection === 'home' ? 'active' : ''}
               tabIndex="0"
+              onClick={closeMenu}
             >
               Home
             </a>
@@ -39,6 +97,7 @@ function Navbar() {
               href="#about"
               className={activeSection === 'about' ? 'active' : ''}
               tabIndex="0"
+              onClick={closeMenu}
             >
               About
             </a>
@@ -48,6 +107,7 @@ function Navbar() {
               href="#education"
               className={activeSection === 'education' ? 'active' : ''}
               tabIndex="0"
+              onClick={closeMenu}
             >
               Education
             </a>
@@ -57,6 +117,7 @@ function Navbar() {
               href="#projects"
               className={activeSection === 'projects' ? 'active' : ''}
               tabIndex="0"
+              onClick={closeMenu}
             >
               Projects
             </a>
@@ -66,6 +127,7 @@ function Navbar() {
               href="#contact"
               className={activeSection === 'contact' ? 'active' : ''}
               tabIndex="0"
+              onClick={closeMenu}
             >
               Contact
             </a>
