@@ -1,0 +1,262 @@
+.certifications-section {
+  padding: 4rem 2rem;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  color: #f0f0f0;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.certifications-section.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.certifications-container {
+  max-width: 1100px;
+  margin: auto;
+  text-align: center;
+}
+
+.certifications-heading {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: #00bfff;
+  text-shadow: 0 0 10px #77b9cf;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease 0.2s, transform 0.6s ease 0.2s;
+}
+
+.certifications-heading.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.certifications-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.6s ease 0.4s, transform 0.6s ease 0.4s;
+}
+
+.certifications-grid.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.certification-card {
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 1.5rem;
+  border-radius: 15px;
+  transition: transform 0.3s, box-shadow 0.3s ease;
+  text-align: left;
+  cursor: default;
+}
+
+.certification-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 20px #00bfff;
+}
+
+.certification-name {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+  color: #00bfff;
+  text-shadow: 0 0 6px #00bfff;
+}
+
+.certification-organization {
+  font-size: 1rem;
+  color: #e0e0e0;
+  margin-bottom: 1rem;
+}
+
+.certificate-image-container {
+  position: relative;
+  margin: 1rem 0;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.certificate-image-container:hover {
+  transform: scale(1.02);
+}
+
+.certificate-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 191, 255, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 10px;
+}
+
+.certificate-image-container:hover .image-overlay {
+  opacity: 1;
+}
+
+.image-overlay span {
+  color: white;
+  font-weight: 600;
+  font-size: 1.1rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.modal-content {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(15px);
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  max-width: 800px;
+  width: 100%;
+  color: #f0f0f0;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.modal-header h3 {
+  color: #00bfff;
+  text-shadow: 0 0 6px #00bfff;
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.close-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #00bfff;
+}
+
+.modal-image {
+  width: 100%;
+  max-height: 600px;
+  object-fit: contain;
+  padding: 1.5rem;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .certifications-section {
+    padding: 3rem 1rem;
+  }
+  
+  .certifications-heading {
+    font-size: 2rem;
+  }
+  
+  .certifications-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .certification-card {
+    padding: 1rem;
+  }
+  
+  .certification-name {
+    font-size: 1.1rem;
+  }
+  
+  .certification-organization {
+    font-size: 0.9rem;
+  }
+  
+  .modal-content {
+    margin: 1rem;
+  }
+  
+  .modal-header {
+    padding: 1rem;
+  }
+  
+  .modal-header h3 {
+    font-size: 1.3rem;
+  }
+  
+  .modal-image {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .certifications-section {
+    padding: 2rem 0.5rem;
+  }
+  
+  .certifications-heading {
+    font-size: 1.8rem;
+  }
+  
+  .certification-card {
+    padding: 0.8rem;
+  }
+  
+  .certification-name {
+    font-size: 1rem;
+  }
+  
+  .certification-organization {
+    font-size: 0.85rem;
+  }
+} 

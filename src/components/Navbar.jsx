@@ -8,7 +8,7 @@ function Navbar() {
   const hamburgerRef = useRef(null);
 
   useEffect(() => {
-    const sections = ['home', 'about', 'education', 'projects', 'contact'];
+    const sections = ['home', 'about', 'education', 'projects', 'certifications', 'contact'];
     const observers = [];
 
     const createObserver = (sectionId) => {
@@ -142,6 +142,16 @@ function Navbar() {
               onClick={closeMenu}
             >
               Projects
+            </a>
+          </li>
+          <li>
+            <a
+              href="#certifications"
+              className={activeSection === 'certifications' ? 'active' : ''}
+              tabIndex="0"
+              onClick={closeMenu}
+            >
+              Certifications
             </a>
           </li>
           <li>

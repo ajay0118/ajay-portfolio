@@ -5,7 +5,7 @@ html {
 }
 
 /* Alternative: Use scroll-margin-top on sections */
-#home, #about, #education, #projects, #contact {
+#home, #about, #education, #projects, #certifications, #contact {
   scroll-margin-top: 100px;
 }
 
